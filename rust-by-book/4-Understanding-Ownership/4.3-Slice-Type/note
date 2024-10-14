@@ -1,0 +1,11 @@
+1. Slice allows referencing a contiguous sequence of elements in a collection rather than the whole collection.
+
+instead of:
+fn first_word(s: &String) -> &str {
+
+use:
+fn first_word(s: &str) -> &str {
+
+as an immutable slice of a String is the same as a string literal
+hence the new declaration would allow us to pass a slice of a String, or a reference to the String.
+
