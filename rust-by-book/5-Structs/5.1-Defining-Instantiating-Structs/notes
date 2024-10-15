@@ -1,0 +1,6 @@
+1. Struct is like a custom data type, allows packing different elements together.
+2. It is like an object's data attribute.
+3. Structs can have methods, implemented inside block defined by keyword impl.
+4. Tuple structs - struct name provides but doesn't have names associated with their fields, rather they just have the types of the fields.
+
+
