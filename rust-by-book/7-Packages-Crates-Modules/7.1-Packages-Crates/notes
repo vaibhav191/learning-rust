@@ -1,0 +1,23 @@
+Rust has a number of features that allow you to manage your code’s organization, including which details are exposed, which details are private, and what names are in each scope in your programs. These features, sometimes collectively referred to as the module system, include:
+	1. Packages: A Cargo feature that lets you build, test, and share crates
+	2. Crates: A tree of modules that produces a library or executable
+	3. Modules and use: Let you control the organization, scope, and privacy of paths
+	4. Paths: A way of naming an item, such as a struct, function, or module
+
+CRATE
+Crate is the smallest amount of code that the rust compiler considers at a time, including a .rs file being run using rustc instead of cargo. Rust compiler assumes that file to be a crate.
+Crate can contain modules, and modules may be defined in other files that get compiled with the crate.
+Crate can be of the forms - 1. Binary Crate 2. Library Crate
+Binary crates are programs that can be bompiled to an executable that can be run, each must have a function called main that defines what happens when the executable runs.
+Library crates don't have a main function, and don't get compiled into an executable. They define functionality intended to be shared with multiple projects.
+
+Crate root is a source file, that rust compilers start from adn muke up the root module of your crate.
+
+PACKAGE
+is a bundle of one or more crates that provide a set of functionalities. It contains a cargo.toml file that describes how to build those crates.
+Package can contain as many binary crates as you like, but at most only one library crate.
+must contain at least one crate, whether that is library or a binary crate.
+When crating a crate, cargo knows if src/main.rs exists then it is a binary crate of the same name as the package, else if src/lib.rs then the package contains a library crate with the same name as package and src/lib.rs is its crate root.
+*Cargo passes crate root files to rustc to build the library or binary.
+
+A package can have multiple binary crates by plaing files in the src/bin directly: each file will be a separate binary crate.

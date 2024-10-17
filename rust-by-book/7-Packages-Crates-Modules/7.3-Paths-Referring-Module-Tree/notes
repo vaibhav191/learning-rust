@@ -1,0 +1,12 @@
+A path can take two forms:
+
+1. An absolute path is the full path starting from a crate root; for code from an external crate, the absolute path begins with the crate name, and for code from the current crate, it starts with the literal crate.
+2. A relative path starts from the current module and uses self, super, or an identifier in the current module.
+
+------------------------------------------
+MAKING STRUCTS AND ENUMS PUBLIC
+
+If we use pub before a struct definition, we make the struct public, but the struct’s fields will still be private.
+
+We only need to define pub at enum level to make all enum items public as well.
+But in struct, we need to define each and every item that needs to be public, else its implicitly defined as private.

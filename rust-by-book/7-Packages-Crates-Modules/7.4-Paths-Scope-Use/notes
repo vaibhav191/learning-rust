@@ -1,0 +1,86 @@
+Specifying the parent module when calling the function makes it clear that the function isn’t locally defined while still minimizing repetition of the full path. The code in Listing 7-13 is unclear as to where add_to_waitlist is defined.
+On the other hand, when bringing in structs, enums, and other items with use, it’s idiomatic to specify the full path
+
+
+use std::collections::HashMap;
+
+fn main() {
+    let mut map = HashMap::new();
+    map.insert(1, 2);
+}
+
+also we don't directly call them directly when they have same name ex- 
+
+use std::fmt;
+use std::io;
+
+fn function1() -> fmt::Result {
+    // --snip--
+}
+
+fn function2() -> io::Result<()> {
+    // --snip--
+}
+---------------------------------------
+USING 'AS'
+
+use std::fmt::Result;
+use std::io::Result as IoResult;
+
+fn function1() -> Result {
+    // --snip--
+}
+
+fn function2() -> IoResult<()> {
+    // --snip--
+}
+
+
+----------------------------------
+RE-EXPORTING using pub use
+
+mod front_of_house {
+    pub mod hosting {
+        pub fn add_to_waitlist() {}
+    }
+}
+
+pub use crate::front_of_house::hosting;
+
+pub fn eat_at_restaurant() {
+    hosting::add_to_waitlist();
+}
+
+Before this change, external code would have to call the add_to_waitlist function by using the path restaurant::front_of_house::hosting::add_to_waitlist(), which also would have required the front_of_house module to be marked as pub. Now that this pub use has re-exported the hosting module from the root module, external code can use the path restaurant::hosting::add_to_waitlist() instead.
+
+Re-exporting is useful when the internal structure of your code is different from how programmers calling your code would think about the domain. For example, in this restaurant metaphor, the people running the restaurant think about “front of house” and “back of house.” But customers visiting a restaurant probably won’t think about the parts of the restaurant in those terms. With pub use, we can write our code with one structure but expose a different structure. Doing so makes our library well organized for programmers working on the library and programmers calling the library.
+
+---------------------------------
+USING EXTERNAL PACKAGES
+found at crates.io
+
+---------------------------------
+nested paths to clean up large use lists
+
+// --snip--
+use std::cmp::Ordering;
+use std::io;
+// --snip--
+
+
+=>
+
+// --snip--
+use std::{cmp::Ordering, io};
+// --snip--
+
+
+use std::io;
+use std::io::Write;
+=>
+use std::io::{self, Write};
+
+-----------------------------
+GLOB Operator
+
+use std::collections::*;
