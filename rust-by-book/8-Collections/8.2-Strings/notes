@@ -1,0 +1,6 @@
+string literals and string slices &str are stored in program's binary.
+
+String however, is a mutable, owned, utf-8 encoded string type.
+strings in rust refers to String or the string slice &str
+
+both string and string slices are utf-8 encoded

@@ -1,0 +1,5 @@
+panic! macro is used for unrecoverable errors, like accessing an array past the end, or explicitly calling panic! macro.
+panic prints failure message, unwinds, cleans up stack and quits.
+environment variable allows to print call stack when a panic occurs.
+we can switch from unwinding to abort upon a panic by adding panic='abort' to profile sections in cargo.toml
+

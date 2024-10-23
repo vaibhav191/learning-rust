@@ -1,0 +1,5 @@
+vector allows to store a variable number of values next to each other.
+string is a collection of characters.
+Hash Map stores a value with a specific key. Particular implementation of more general Map.
+
+vectors can store values next to each other, of the same type.
